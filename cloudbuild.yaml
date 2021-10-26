@@ -2,3 +2,9 @@ steps:
   # running docker-compose
   - name: 'docker/compose:1.29.2'
     args: ['up', '-d']
+  - name: 'php artisan'
+    args: ['cache:clear']
+  - name: 'php artisan'
+    args: ['config:clear']
+  - name: 'php artisan'
+    args: ['view:clear']
