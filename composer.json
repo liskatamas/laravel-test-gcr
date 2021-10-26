@@ -38,9 +38,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@php artisan view:clear",
-            "@php artisan route:clear",
-            "@php artisan config:clear",
+            "@php artisan optimize:clear",
+            "@php artisan optimize",
+            "composer dump-autoload",
+            "chmod -R 755 bootstrap\/cache",
             "@php artisan cache:clear"
         ],
         "post-autoload-dump": [
@@ -49,9 +50,10 @@
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi",
-            "@php artisan view:clear",
-            "@php artisan route:clear",
-            "@php artisan config:clear",
+            "@php artisan optimize:clear",
+            "@php artisan optimize",
+            "composer dump-autoload",
+            "chmod -R 755 bootstrap\/cache",
             "@php artisan cache:clear"
         ],
         "post-root-package-install": [
