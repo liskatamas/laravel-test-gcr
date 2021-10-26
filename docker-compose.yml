@@ -28,6 +28,13 @@ services:
         networks:
             testing_net:
                 ipv4_address: 172.28.1.4
+
+    composer:
+        image: composer:latest
+        command: install
+        volumes:
+            - ./:/application
+
 networks:
     testing_net:
         ipam:
