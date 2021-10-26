@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cica', function () {
-    return view('cica');
-});
+//Route::get('/cica', function () {
+//    return view('cica');
+//});
 
 
 Route::get('/categories', function () {
