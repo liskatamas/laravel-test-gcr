@@ -17,8 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/cica', function () {
+    return view('cica');
+});
+
+
 Route::get('/categories', function () {
-     $client = \Softonic\GraphQL\ClientBuilder::build('https://api.shop.rossmann.beta.big.hu/graphql');
+    $client = \Softonic\GraphQL\ClientBuilder::build('https://api.shop.rossmann.beta.big.hu/graphql');
 
     $query = '
         query {
