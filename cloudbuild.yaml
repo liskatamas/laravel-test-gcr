@@ -2,9 +2,3 @@ steps:
   # running docker-compose
   - name: 'docker/compose:1.29.2'
     args: ['up', '-d']
-  - name: 'php'
-    args: ['artisan', 'cache:clear']
-  - name: 'php'
-    args: ['artisan','config:clear']
-  - name: 'php'
-    args: ['artisan','view:clear']
