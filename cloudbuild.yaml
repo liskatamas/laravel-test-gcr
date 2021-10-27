@@ -1,9 +1,15 @@
 steps:
   # running docker-compose
-  - name: 'docker/compose:1.29.2'
-    args: ['up', '-d']
-  - name: 'composer'
-    args: ['install']
+#  - name: 'docker/compose:1.29.2'
+#    args: ['up', '-d']
+#  - name: 'composer'
+#    args: ['install']
+  - name: docker/compose
+    args:
+      - build
+      - '--build-arg'
+      - release_id=$SHORT_SHA
+    id: Build
   - name: gcr.io/cloud-builders/docker
     args:
       - tag
