@@ -38,3 +38,6 @@ steps:
 
 images:
   - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+substitutions:
+  _GCR_HOSTNAME: eu.gcr.io
+  _SERVICE_NAME: laravel-new-test
