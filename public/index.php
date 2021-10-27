@@ -1,3 +1,3 @@
 <?php
 
-echo "cica2";
+echo "cica :')";
