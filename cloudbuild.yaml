@@ -1,4 +1,6 @@
 steps:
+  - name: 'docker/compose:1.19.0'
+    args: [ 'up', '-d' ]
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/laravel-new-test:$COMMIT_SHA', '.']
