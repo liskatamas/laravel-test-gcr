@@ -1,23 +1,4 @@
 steps:
-  - name: docker/compose
-    args:
-      - build
-      - '--build-arg'
-      - release_id=$SHORT_SHA
-    id: Build
-  # Push the container image to Container Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push', 'gcr.io/$PROJECT_ID/laravel-new-test:$COMMIT_SHA' ]
-  # Deploy container image to Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
-    args:
-      - 'run'
-      - 'deploy'
-      - 'laravel-new-test'
-      - '--image'
-      - 'gcr.io/$PROJECT_ID/laravel-new-test:$COMMIT_SHA'
-      - '--region'
-      - 'europe-west3'
-  images:
-    - 'gcr.io/$PROJECT_ID/laravel-new-test:$COMMIT_SHA'
+  # running docker-compose
+  - name: 'docker/compose:1.29.2'
+    args: ['up', '-d']
