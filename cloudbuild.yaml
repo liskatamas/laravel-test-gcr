@@ -5,6 +5,6 @@ steps:
   - name: 'composer'
     args: ['install']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'workspace_app:latest', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
+    args: ['tag', 'laravel-test:latest', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
 
 images: ['gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
