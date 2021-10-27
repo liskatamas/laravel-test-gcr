@@ -1,9 +1,4 @@
 steps:
-  # running docker-compose
-#  - name: 'docker/compose:1.29.2'
-#    args: ['up', '-d']
-#  - name: 'composer'
-#    args: ['install']
   - name: docker/compose
     args:
       - build
@@ -13,7 +8,7 @@ steps:
   - name: gcr.io/cloud-builders/docker
     args:
       - tag
-      - 'laravel-test-gcr_php-fpm:latest'
+      - 'laravel-new-test:latest'
       - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
     id: Tag
   - name: gcr.io/cloud-builders/docker
@@ -38,6 +33,16 @@ steps:
 
 images:
   - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+options:
+  substitutionOption: ALLOW_LOOSE
 substitutions:
+  _TRIGGER_ID: f0939351-4135-4611-bb1a-db00956c5aaf
+  _DEPLOY_REGION: europe-west3
   _GCR_HOSTNAME: eu.gcr.io
+  _PLATFORM: managed
   _SERVICE_NAME: laravel-new-test
+  _LABELS: gcb-trigger-id=f0939351-4135-4611-bb1a-db00956c5aaf
+tags:
+  - gcp-cloud-build-deploy-cloud-run
+  - gcp-cloud-build-deploy-cloud-run-managed
+  - rossmann-microservices
