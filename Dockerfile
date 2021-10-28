@@ -66,6 +66,8 @@ COPY docker/nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /var/www/rossmann/
 COPY . /var/www/rossmann/
 
+RUN ln -sf /dev/stderr /var/www/rossmann/storage/logs/laravel.log
+
 RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
 RUN cd /var/www/rossmann/ && \
     /usr/local/bin/composer install --no-dev
