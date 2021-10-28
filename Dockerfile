@@ -56,18 +56,20 @@ RUN apk add --update --no-cache \
   && mkdir /var/tmp/nginx \
   && chown -R www-data:www-data /var/tmp/nginx
 
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+	&& ln -sf /dev/stderr /var/log/nginx/error.log
+
 RUN mkdir -p /run/nginx
 
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
-RUN mkdir -p /app
-COPY . /app
+RUN mkdir -p /var/www/rossmann/
+COPY . /var/www/rossmann/
 
 RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
-RUN cd /app && \
+RUN cd /var/www/rossmann/ && \
     /usr/local/bin/composer install --no-dev
 
-RUN chown -R www-data: /app
-RUN chmod 777 -R /app
+RUN chown -R www-data: /var/www/rossmann/
 
-CMD sh /app/docker/startup.sh
+CMD sh /var/www/rossmann//docker/startup.sh

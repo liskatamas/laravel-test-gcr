@@ -30,12 +30,7 @@ if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
 | into the script here so we don't need to manually load our classes.
 |
 */
-try {
-    require __DIR__ . '/../vendor/autoload.php';
-} catch (Exception $e) {
-    echo "Message : " . $e->getMessage();
-    echo "Code : " . $e->getCode();
-}
+require __DIR__ . '/../vendor/autoload.php';
 /*
 |--------------------------------------------------------------------------
 | Run The Application
