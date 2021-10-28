@@ -58,6 +58,7 @@ RUN apk add --update --no-cache \
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
+	&& ln -sf /dev/stderr /var/www/rossmann/storage/logs/laravel.log
 
 RUN mkdir -p /run/nginx
 
