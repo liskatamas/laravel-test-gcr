@@ -75,4 +75,4 @@ RUN cd /var/www/rossmann/ && \
 RUN chown -R www-data: /var/www/rossmann/
 RUN chmod -R 777 /var/www/rossmann/storage
 
-CMD sh /var/www/rossmann//docker/startup.sh
+CMD sh /var/www/rossmann/docker/startup.sh
