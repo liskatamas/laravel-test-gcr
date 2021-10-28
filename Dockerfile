@@ -71,5 +71,6 @@ RUN cd /var/www/rossmann/ && \
     /usr/local/bin/composer install --no-dev
 
 RUN chown -R www-data: /var/www/rossmann/
+RUN chmod -R 777 /var/www/rossmann/storage
 
 CMD sh /var/www/rossmann//docker/startup.sh
