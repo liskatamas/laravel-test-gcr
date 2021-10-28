@@ -6,12 +6,10 @@ php-fpm -D
 
 while ! nc -w 1 -z 127.0.0.1 9000; do sleep 0.1; done;
 
-if [ ! -z "$LARAVEL_INIT_ENABLED" ] && [ "$LARAVEL_INIT_ENABLED" == "1" ]; then
-  echo -e "\nInitialize Laravel\n"
+  echo -e "\nInitialize Laravel - clear cache \n"
   php artisan config:cache
   php artisan event:cache
   php artisan view:cache
-fi
 
 if [ ! -z "$LARAVEL_DB_MIGRATION_ENABLED" ] && [ "$LARAVEL_DB_MIGRATION_ENABLED" == "1" ]; then
   echo -e "\nRun database migration\n"
