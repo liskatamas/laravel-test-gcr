@@ -1,0 +1,30 @@
+version: "3.1"
+
+services:
+    web:
+        build: .
+        container_name: app-php-fpm8
+        ports:
+            - "80:80"
+        volumes:
+            - .:/var/www/rossmann
+
+    postgres:
+        image: postgres:9.5-alpine
+        container_name: app-postgres
+        volumes:
+            - "./docker/postgres:/var/lib/postgresql/data"
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=postgresdb
+        networks:
+            testing_net:
+                ipv4_address: 172.28.1.2
+
+networks:
+    testing_net:
+        ipam:
+            driver: default
+            config:
+                -   subnet: 172.28.0.0/16
