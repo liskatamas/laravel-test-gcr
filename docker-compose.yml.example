@@ -18,24 +18,16 @@ services:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
             - POSTGRES_DB=postgresdb
-        networks:
-            testing_net:
-                ipv4_address: 172.28.1.2
+        ports:
+            - "5432:5432"
 
     composer:
         image: composer:latest
         container_name: app-composer
-        working_dir: /application
+        working_dir: /var/www/rossmann
         volumes:
-            - ./:/application
+            - ./:/var/www/rossmann
         command: composer install --ignore-platform-reqs
-
-networks:
-    testing_net:
-        ipam:
-            driver: default
-            config:
-                -   subnet: 172.28.0.0/16
 
 volumes:
     database:
