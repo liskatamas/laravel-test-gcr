@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\CicaController::class, 'index']);
 
+Route::get('/err', function () {
+    return view('err');
+});
+
+
 Route::get('/categories', function () {
     $client = \Softonic\GraphQL\ClientBuilder::build('https://api.shop.rossmann.beta.big.hu/graphql');
 

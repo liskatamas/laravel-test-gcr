@@ -67,7 +67,7 @@ COPY docker/php-fpm.d/www.conf /etc/php8/php-fpm.d/www.conf
 RUN mkdir -p /var/www/rossmann/
 COPY . /var/www/rossmann/
 
-RUN ln -sf /dev/stderr /var/www/rossmann/storage/logs/laravel.log
+RUN touch /var/log/app.log && chmod og+w /var/log/app.log
 
 RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
 RUN cd /var/www/rossmann/ && \
