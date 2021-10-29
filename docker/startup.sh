@@ -8,11 +8,6 @@ while ! nc -w 1 -z 127.0.0.1 9000; do sleep 0.1; done;
 
 ARTISAN=/var/www/rossmann/artisan
 
-php $ARTISAN route:clear
-php $ARTISAN config:clear
-php $ARTISAN event:clear
-php $ARTISAN view:clear
-
 if [ ! -z "$LARAVEL_INIT_ENABLED" ] && [ "$LARAVEL_INIT_ENABLED" == "1" ]; then
   echo -e "\nInitialize Laravel\n"
   php $ARTISAN config:cache
@@ -23,7 +18,6 @@ fi
 if [ ! -z "$LARAVEL_DB_MIGRATION_ENABLED" ] && [ "$LARAVEL_DB_MIGRATION_ENABLED" == "1" ]; then
   echo -e "\nRun database migration\n"
   php $ARTISAN migrate --force
-  php $ARTISAN elastic:migrate
 fi
 
 if [ ! -z "$LARAVEL_DB_SEEDER_ENABLED" ] && [ "$LARAVEL_DB_SEEDER_ENABLED" == "1" ]; then
