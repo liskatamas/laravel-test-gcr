@@ -6,27 +6,29 @@ php-fpm -D
 
 while ! nc -w 1 -z 127.0.0.1 9000; do sleep 0.1; done;
 
-php artisan route:clear
-php artisan config:clear
-php artisan event:clear
-php artisan view:clear
+ARTISAN=/var/www/rossmann/artisan
+
+php $ARTISAN route:clear
+php $ARTISAN config:clear
+php $ARTISAN event:clear
+php $ARTISAN view:clear
 
 if [ ! -z "$LARAVEL_INIT_ENABLED" ] && [ "$LARAVEL_INIT_ENABLED" == "1" ]; then
   echo -e "\nInitialize Laravel\n"
-  php artisan config:cache
-  php artisan event:cache
-  php artisan view:cache
+  php $ARTISAN config:cache
+  php $ARTISAN event:cache
+  php $ARTISAN view:cache
 fi
 
 if [ ! -z "$LARAVEL_DB_MIGRATION_ENABLED" ] && [ "$LARAVEL_DB_MIGRATION_ENABLED" == "1" ]; then
   echo -e "\nRun database migration\n"
-  php artisan migrate --force
-  php artisan elastic:migrate
+  php $ARTISAN migrate --force
+  php $ARTISAN elastic:migrate
 fi
 
 if [ ! -z "$LARAVEL_DB_SEEDER_ENABLED" ] && [ "$LARAVEL_DB_SEEDER_ENABLED" == "1" ]; then
   echo -e "\nRun database seeder\n"
-  php artisan db:seed --force
+  php $ARTISAN db:seed --force
 fi
 
 if [ ! -z "$PORT" ]; then
