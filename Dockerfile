@@ -62,6 +62,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 RUN mkdir -p /run/nginx
 
 COPY docker/nginx.conf /etc/nginx/nginx.conf
+COPY docker/php-fpm.d/www.conf /etc/php8/php-fpm.d/www.conf
 
 RUN mkdir -p /var/www/rossmann/
 COPY . /var/www/rossmann/
