@@ -16,5 +16,26 @@
    - 'gcr.io/$PROJECT_ID/laravel-new-test:$COMMIT_SHA'
    - '--region'
    - 'europe-west3'
+   - '--set-env-vars'
+   - 'LARAVEL_INIT_ENABLED=1,LARAVEL_DB_MIGRATION_ENABLED=1,LARAVEL_DB_SEEDER_ENABLED=1'
+ - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   entrypoint: gcloud
+   args:
+   - 'run'
+   - 'services'
+   - 'update'
+   - 'laravel-new-test'
+   - '--update-env-vars'
+   - 'LARAVEL_DB_MIGRATION_ENABLED=0,LARAVEL_DB_SEEDER_ENABLED=0'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   entrypoint: gcloud
+   args:
+   - 'run'
+   - 'deploy'
+   - 'laravel-new-test'
+   - '--image'
+   - 'gcr.io/$PROJECT_ID/laravel-new-test:$COMMIT_SHA'
+   - '--region'
+   - 'europe-west3'
  images:
  - 'gcr.io/$PROJECT_ID/laravel-new-test:$COMMIT_SHA'
