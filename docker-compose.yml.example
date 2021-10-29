@@ -13,7 +13,7 @@ services:
         image: postgres:9.5-alpine
         container_name: app-postgres
         volumes:
-            - "./docker/postgres:/var/lib/postgresql/data"
+            - database:/var/lib/postgresql/data
         environment:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
@@ -22,9 +22,20 @@ services:
             testing_net:
                 ipv4_address: 172.28.1.2
 
+    composer:
+        image: composer:latest
+        container_name: app-composer
+        working_dir: /application
+        volumes:
+            - ./:/application
+        command: composer install --ignore-platform-reqs
+
 networks:
     testing_net:
         ipam:
             driver: default
             config:
                 -   subnet: 172.28.0.0/16
+
+volumes:
+    database:
