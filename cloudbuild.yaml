@@ -16,7 +16,7 @@
    - 'gcr.io/$PROJECT_ID/laravel-new-test:$COMMIT_SHA'
    - '--region'
    - 'europe-west3'
-   - '--set-env-vars'
+   - '--update-env-vars'
    - 'LARAVEL_INIT_ENABLED=1,LARAVEL_DB_MIGRATION_ENABLED=1,LARAVEL_DB_SEEDER_ENABLED=1'
  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
    entrypoint: gcloud
